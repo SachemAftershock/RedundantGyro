@@ -1,12 +1,10 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 //import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
 
-public class NaxX_Gyro extends SubsystemBase {
+public class NaxX_Gyro {
 
   // Make this a singleton, since there will only be on NavX on the RoboRIO's SPI bus.  
   private static NaxX_Gyro mInstance;
