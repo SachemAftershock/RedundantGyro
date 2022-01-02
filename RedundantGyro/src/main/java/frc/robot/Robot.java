@@ -20,6 +20,10 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  private static RedundantGyro imu;
+  private static int iterationCounter = 0;
+
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -29,6 +33,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    imu = RedundantGyro.getInstance();
   }
 
   /**
@@ -74,11 +79,17 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    imu.RedundantGyroInit();
+  }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    if (iterationCounter++ % 50 == 0) {
+      imu.showBothHeadings();
+    }
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
@@ -90,9 +101,15 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when test mode is enabled. */
   @Override
-  public void testInit() {}
+  public void testInit() {
+    imu.RedundantGyroInit();
+  }
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    if (iterationCounter++ % 50 == 0) {
+      imu.RedundantGyroPeriodic();
+    }
+  }
 }

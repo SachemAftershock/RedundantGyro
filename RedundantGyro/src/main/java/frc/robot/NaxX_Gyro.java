@@ -18,6 +18,7 @@ public class NaxX_Gyro {
   }
   
   public void NavxInit(){
+		System.out.println("=======================================");
     System.out.println("--NavxInit--NAVX(firmware version): " + mNavx.getFirmwareVersion() + " ------");
     
     System.out.println("--NavxInit--NAVX(calibrating,conected): " + mNavx.isCalibrating() + " , " + mNavx.isConnected() + " ------");
@@ -30,6 +31,7 @@ public class NaxX_Gyro {
     System.out.println("--NavxInit--NAVX(calibrating,conected,angle): " + mNavx.isCalibrating() + " , " + mNavx.isConnected() + " , " + mNavx.getAngle());  
     mNavx.reset();
     System.out.println("--NavxInit--NAVX(calibrating,conected,angle): " + mNavx.isCalibrating() + " , " + mNavx.isConnected() + " , " + mNavx.getAngle());  
+		System.out.println("=======================================");
   }
 
   public void NavxPeriodic(){
@@ -47,7 +49,7 @@ public class NaxX_Gyro {
     if(heading == 0.0) {
         return 0.0; //prevents a -0.0 reading
     }
-    return -heading;
+    return heading;
   }
 
   public void zero() {
